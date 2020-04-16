@@ -4,6 +4,7 @@ import { IonicModule } from '@ionic/angular';
 import { HomePage } from './home.page';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('HomePage', () => {
   let component: HomePage;
@@ -12,7 +13,7 @@ describe('HomePage', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ HomePage ],
-      imports: [IonicModule.forRoot()],
+      imports: [IonicModule.forRoot(), RouterTestingModule],
       providers: [
         Geolocation,
         LocalNotifications,
