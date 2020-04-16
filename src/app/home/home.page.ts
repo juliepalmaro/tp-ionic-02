@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {AlertController} from '@ionic/angular';
 import {Geolocation} from '@ionic-native/geolocation/ngx';
 import { filter } from 'rxjs/operators';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,7 @@ export class HomePage {
   title: string;
   geolocArray: { lat: number, lng: number}[] = [];
 
-  constructor(private alertController: AlertController, private geolocation: Geolocation) {
+  constructor(private alertController: AlertController, private geolocation: Geolocation, private localNotifications: LocalNotifications) {
     this.load();
   }
 
@@ -43,6 +44,15 @@ export class HomePage {
     const watch = this.geolocation.watchPosition().pipe(filter((p) => p.coords !== undefined));
     watch.subscribe((data) => {
       this.geolocArray.push({ lat: data.coords.latitude, lng: data.coords.longitude });
+    });
+  }
+
+  simpleNotif() {
+    this.localNotifications.schedule({
+      id: 1,
+      text: 'Single Local Notification',
+      sound: 'file://sound.mp3',
+      data: { secret: 'secret' }
     });
   }
 

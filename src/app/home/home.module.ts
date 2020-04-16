@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { HomePage } from './home.page';
 import {LoginService} from '../services/login.service';
 import {Geolocation} from '@ionic-native/geolocation/ngx';
+import { LocalNotifications} from '@ionic-native/local-notifications/ngx';
 
 @NgModule({
   imports: [
@@ -21,6 +22,10 @@ import {Geolocation} from '@ionic-native/geolocation/ngx';
     ])
   ],
   declarations: [HomePage],
-  providers: [LoginService, Geolocation]
+  providers: [
+    LoginService,
+    Geolocation,
+    LocalNotifications,
+  ]
 })
 export class HomePageModule {}
