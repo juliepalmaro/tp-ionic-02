@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { CameraPage } from './camera.page';
 import { RouterModule } from '@angular/router';
+import { CameraPreview } from '@ionic-native/camera-preview/ngx';
 
 @NgModule({
   imports: [
@@ -21,5 +22,6 @@ import { RouterModule } from '@angular/router';
     ])
   ],
   declarations: [CameraPage],
+  providers: [CameraPreview]
 })
 export class CameraPageModule {}

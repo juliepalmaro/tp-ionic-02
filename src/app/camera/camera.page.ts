@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CameraPreview, CameraPreviewOptions, CameraPreviewPictureOptions } from '@ionic-native/camera-preview/ngx';
 
 @Component({
   selector: 'app-camera',
@@ -7,9 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CameraPage implements OnInit {
 
-  constructor() { }
+  constructor(private cameraPreview: CameraPreview) { }
 
   ngOnInit() {
+    const cameraPreviewOpts: CameraPreviewOptions = {
+      x: 0,
+      y: 0,
+      width: window.screen.width,
+      height: window.screen.height,
+      camera: 'rear',
+      tapPhoto: true,
+      previewDrag: true,
+      alpha: 1
+    };
+
+    this.cameraPreview.startCamera(cameraPreviewOpts).then(
+      (res) => {
+        console.log(res);
+      },
+      (err) => {
+        console.log(err);
+      });
   }
 
 }
