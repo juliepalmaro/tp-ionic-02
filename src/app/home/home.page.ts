@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {AlertController} from '@ionic/angular';
 import {Geolocation} from '@ionic-native/geolocation/ngx';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -39,7 +40,7 @@ export class HomePage {
   }
 
   load() {
-    const watch = this.geolocation.watchPosition();
+    const watch = this.geolocation.watchPosition().pipe(filter((p) => p.coords !== undefined));
     watch.subscribe((data) => {
       this.geolocArray.push({ lat: data.coords.latitude, lng: data.coords.longitude });
     });
