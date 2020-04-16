@@ -13,12 +13,12 @@ export class CameraPage implements OnInit {
   ngOnInit() {
     const cameraPreviewOpts: CameraPreviewOptions = {
       x: 0,
-      y: 0,
+      y: 60,
       width: window.screen.width,
       height: window.screen.height,
       camera: 'rear',
       tapPhoto: true,
-      previewDrag: true,
+      previewDrag: false,
       alpha: 1
     };
 
@@ -29,6 +29,10 @@ export class CameraPage implements OnInit {
       (err) => {
         console.log(err);
       });
+  }
+
+  stopCamera() {
+    this.cameraPreview.stopCamera();
   }
 
 }
